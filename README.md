@@ -24,8 +24,12 @@ Some ideas:
 - We can ﬁlter out short tokens by checking their length.
 
 ## Develop Vocabulary
+
 -When working with predictive models of text, like a bag-of-words model, there is a pressure to reduce the size of the vocabulary. The larger the vocabulary, the more sparse the representation of each word or document. A part of preparing text for sentiment analysis involves deﬁning and tailoring the vocabulary of words supported by the model. We can do this by loading all of the documents in the dataset and building a set of words. We may decide to support all of these words, or perhaps discard some. The ﬁnal chosen vocabulary can then be saved to ﬁle for later use, such as ﬁltering words in new documents in the future. 
+
 -We can keep track of the vocabulary in a Counter, which is a dictionary of words and their count with some additional convenience functions. We need to develop a new function to process a document and add it to the vocabulary. The function needs to load a document by calling the previously developed load doc() function. It needs to clean the loaded document using the previously developed clean doc() function, then it needs to add all the tokens to the Counter, and update counts. We can do this last step by calling the update() function on the counter object. Below is a function called add doc to vocab() that takes as arguments a document ﬁlename and a Counter vocabulary.
+
 -Running the example creates a vocabulary with all documents in the dataset, including positive and negative reviews. We can see that there are a little over 46,000 unique words across all reviews and the top 3 words are ﬁlm, one, and movie.
+
 -Perhaps the least common words, those that only appear once across all reviews, are not predictive. Perhaps some of the most common words are not useful too. These are good questions and really should be tested with a speciﬁc predictive model. Generally, words that only appear once or a few times across 2,000 reviews are probably not predictive and can be removed from the vocabulary, greatly cutting down on the tokens we need to model. We can do this by stepping through words and their counts and only keeping those with a count above a chosen threshold. Here we will use 5 occurrences.
 
